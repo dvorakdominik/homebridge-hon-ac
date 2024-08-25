@@ -62,7 +62,20 @@ export class ExampleHomebridgePlatform implements DynamicPlatformPlugin {
    * must not be registered again to prevent "duplicate UUID" errors.
    */
   async discoverDevices() {
+    this.log.info(`Device discover... ${this.config.python}`);
     this.pyhOnInstance = spawn(this.config.python, ['./lib/script.py', this.config.email, this.config.password]);
+
+    this.pyhOnInstance.stderr.on('data', (data) => {
+      this.log.info(`stderr: ${data}`);
+    });
+
+    this.pyhOnInstance.on('error', (error) => {
+      this.log.info(`Error: ${error.message}`);
+    });
+
+    this.pyhOnInstance.on('close', (code) => {
+      this.log.info(`Close: ${code}`);
+    });
 
     let isLoaded = false;
     this.pyhOnInstance.stdout.on('data', (stdout: any) => {
