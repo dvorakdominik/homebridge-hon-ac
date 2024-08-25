@@ -1,0 +1,31 @@
+{
+  "pluginAlias": "HomebridgeHon",
+  "pluginType": "platform",
+  "singular": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "email": {
+        "title": "Name",
+        "type": "string",
+        "required": true,
+        "default": "",
+        "description": "Your hOn email"
+      },
+      "password": {
+        "title": "Password",
+        "type": "string",
+        "required": true,
+        "default": "",
+        "description": "Your hOn password"
+      },
+      "python": {
+        "title": "python version",
+        "type": "string",
+        "required": true,
+        "default": "python3",
+        "description": "python x python3"
+      }
+    }
+  }
+}

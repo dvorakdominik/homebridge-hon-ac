@@ -1,0 +1,42 @@
+{
+  "displayName": "HomebridgeHon",
+  "name": "homebridge-hon-ac",
+  "version": "0.1.0",
+  "description": "Plugin for homebridge, only for testing!",
+  "license": "Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvorakdominik/homebridge-hon-ac.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dvorakdominik/homebridge-hon-ac/issues"
+  },
+  "engines": {
+    "node": "^18.17.0 || ^20.9.0",
+    "homebridge": "^1.8.0"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint src/**/*.ts --max-warnings=0",
+    "clean:homebridge": "rimraf ../../../.homebridge/persist && rimraf ../../../.homebridge/accessories",
+    "watch": "npm run build && nodemon",
+    "build": "rimraf ./dist && npm run clean:homebridge && tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "homebridge-plugin",
+    "hon"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.12.13",
+    "@typescript-eslint/eslint-plugin": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0",
+    "eslint": "^8.57.0",
+    "homebridge": "^1.8.2",
+    "nodemon": "^3.1.2",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
