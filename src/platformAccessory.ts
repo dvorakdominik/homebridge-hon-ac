@@ -27,10 +27,19 @@ export class ExamplePlatformAccessory {
 
         if (this.waitingForCommand === true) return;
 
-        if (json.onOffStatus) {
+        this.platform.log.debug(json);
+
+        if (json.onOffStatus && json.mode) {
           let state = this.platform.Characteristic.TargetHeatingCoolingState.OFF;
+
           if (json.onOffStatus == '1') {
-            state = this.platform.Characteristic.TargetHeatingCoolingState.COOL;
+            if (json.mode === '1') {
+              state = this.platform.Characteristic.TargetHeatingCoolingState.COOL;
+            } else if (json.mode === '4') {
+              state = this.platform.Characteristic.TargetHeatingCoolingState.HEAT;
+            } else {
+              state = this.platform.Characteristic.TargetHeatingCoolingState.AUTO;
+            }
           }
 
           this.service.updateCharacteristic(this.platform.Characteristic.TargetHeatingCoolingState, state);

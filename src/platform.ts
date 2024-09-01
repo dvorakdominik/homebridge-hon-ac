@@ -63,7 +63,12 @@ export class ExampleHomebridgePlatform implements DynamicPlatformPlugin {
    */
   async discoverDevices() {
     this.log.info(`Device discover... ${this.config.python}`);
-    this.pyhOnInstance = spawn(this.config.python, ['./lib/script.py', this.config.email, this.config.password]);
+
+    this.pyhOnInstance = spawn(this.config.python, [
+      `${this.config.path}/lib/script.py`,
+      this.config.email,
+      this.config.password,
+    ]);
 
     this.pyhOnInstance.stderr.on('data', (data) => {
       this.log.info(`stderr: ${data}`);

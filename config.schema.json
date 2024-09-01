@@ -19,6 +19,12 @@
         "default": "",
         "description": "Your hOn password"
       },
+      "path": {
+        "title": "path to HomebridgeHon plugin",
+        "type": "string",
+        "required": true,
+        "default": ""
+      },
       "python": {
         "title": "python version",
         "type": "string",
